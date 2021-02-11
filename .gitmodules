@@ -1,3 +1,6 @@
 [submodule "rusty-loader"]
 	path = rusty-loader
 	url = git@github.com:hermitcore/rusty-loader.git
+[submodule "uhyve"]
+	path = uhyve
+	url = git@github.com:hermitcore/uhyve.git
