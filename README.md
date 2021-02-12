@@ -100,7 +100,20 @@ Hello World!
 
 ### Echo TCP Server
 
-> NOTE: Don't run with `--release` this seems to panic!
+```sh
+cd echo-hermit
+cargo run --release
+```
+
+```plain
+....
+[INFO] Spawn network thread with id 2
+[WARN] Ethernet interface not available
+thread 'main' panicked at 'called `Result::unwrap()` on an `Err` value: Custom { kind: Other, error: "accept failed" }', src/main.rs:9:47
+[0][INFO] Number of interrupts
+[0][INFO] [0][7]: 3
+[0][INFO] Shutting down system
+```
 
 ## Bonus Track AWS
 
