@@ -4,3 +4,9 @@
 [submodule "uhyve"]
 	path = uhyve
 	url = git@github.com:hermitcore/uhyve.git
+[submodule "echo-hermit/tiny-http"]
+	path = echo-hermit/tiny-http
+	url = git@github.com:hermitcore/tiny-http.git
+[submodule "tiny-http"]
+	path = tiny-http
+	url = git@github.com:hermitcore/tiny-http.git
