@@ -7,4 +7,12 @@ target = "x86_64-unknown-hermit"
 
 [target.x86_64-unknown-hermit]
 # runner = "uhyve"
-runner = "qemu-system-x86_64 -cpu qemu64,apic,fsgsbase,rdtscp,xsave,fxsr,rdrand -display none -smp 1 -m 64M -serial stdio -kernel ../rusty-loader/target/x86_64-unknown-hermit-loader/release/rusty-loader -initrd"
+
+## works on linux, enabled kvm and virtio using tap10
+runner = "qemu-system-x86_64 -enable-kvm -netdev tap,id=net0,ifname=tap10,script=no,downscript=no,vhost=no -device virtio-net-pci,netdev=net0,disable-legacy=on -cpu qemu64,apic,fsgsbase,rdtscp,xsave,fxsr -display none -smp 1 -m 512M -serial stdio -kernel ../rusty-loader/target/x86_64-unknown-hermit-loader/release/rusty-loader -initrd"
+
+## using virtio
+#runner = "qemu-system-x86_64 -netdev tap,id=net0,ifname=tun12,script=no,downscript=no,vhost=on -device virtio-net-pci,netdev=net0,disable-legacy=on -cpu qemu64,apic,fsgsbase,rdtscp,xsave,fxsr -display none -smp 1 -m 512M -serial stdio -kernel ../rusty-loader/target/x86_64-unknown-hermit-loader/release/rusty-loader -initrd"
+
+## using forward via rtl8139 and port forwarding
+# runner = "qemu-system-x86_64 -smp 1 -m 256M -display none -serial stdio -netdev user,id=u1,hostfwd=tcp::8080-:8080 -device rtl8139,netdev=u1 -cpu qemu64,apic,fsgsbase,rdtscp,xsave,fxsr,rdrand -kernel ../rusty-loader/target/x86_64-unknown-hermit-loader/release/rusty-loader -initrd"

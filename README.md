@@ -100,19 +100,38 @@ Hello World!
 
 ### Echo TCP Server
 
+#### Preparing the network on Linux
+
+Setting up the tun network device:
+
+```sh
+sudo ip tuntap add tap10 mode tap
+sudo ip addr add 10.0.5.1/24 broadcast 10.0.5.255 dev tap10
+sudo ip link set dev tap10 up
+sudo bash -c 'echo 1 > /proc/sys/net/ipv4/conf/tap10/proxy_arp'
+# sudo route add -net 10.0.5.0/24 gw 10.0.5.1
+```
+
+> Note: when running qemu must provide the right network device with those options
+`qemu-system-x86_64` options:
+- `-netdev tap,id=net0,ifname=tap10,script=no,downscript=no,vhost=on`
+- `-device virtio-net-pci,netdev=net0,disable-legacy=on`
+- `-m 512M` memory needs to be at least `512M`
+
 ```sh
 cd echo-hermit
 cargo run --release
 ```
 
-```plain
-....
-[INFO] Spawn network thread with id 2
-[WARN] Ethernet interface not available
-thread 'main' panicked at 'called `Result::unwrap()` on an `Err` value: Custom { kind: Other, error: "accept failed" }', src/main.rs:9:47
-[0][INFO] Number of interrupts
-[0][INFO] [0][7]: 3
-[0][INFO] Shutting down system
+> Note: you can control the network properties via env variables
+> `HERMIT_VERBOSE=1 HERMIT_IP="10.0.5.3" HERMIT_GATEWAY="10.0.5.2" HERMIT_MASK="255.255.255.0" HERMIT_NETIF=bridge102 cargo run --release`
+
+#### testing
+
+```sh
+telnet 10.0.5.1 8080
+hello hermit
+hello hermit
 ```
 
 ## Bonus Track AWS
@@ -125,3 +144,12 @@ Let's go to the cloud
 ## References
 
 - [github/hermitcore](https://github.com/hermitcore)
+- [hermit/playground](https://raw.githubusercontent.com/hermitcore/hermit-playground/master/README.md)
+- [macos/tuntaposx/faq](http://tuntaposx.sourceforge.net/faq.xhtml)
+
+## Appendix MacOS networking Cheat Sheet
+
+- remove a network bridge interface: `sudo ifconfig <bridge01> destroy`
+- create a tun interface: `brew install tuntap && sudo ifconfig tun0 create`
+- check route to host: `traceroute 10.0.5.3`
+- add a route to one (first) host via (second) gateway: `sudo route add 10.0.5.3 10.0.5.1` 
