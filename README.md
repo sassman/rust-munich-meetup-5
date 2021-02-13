@@ -129,7 +129,7 @@ cargo run --release
 #### testing
 
 ```sh
-telnet 10.0.5.1 8080
+telnet localhost 8080
 hello hermit
 hello hermit
 ```
@@ -146,10 +146,13 @@ Let's go to the cloud
 - [github/hermitcore](https://github.com/hermitcore)
 - [hermit/playground](https://raw.githubusercontent.com/hermitcore/hermit-playground/master/README.md)
 - [macos/tuntaposx/faq](http://tuntaposx.sourceforge.net/faq.xhtml)
+- [macos/qemu-bridging](https://www.dzombak.com/files/qemu-bridging-mavericks.pdf)
+- [qemu/networking](https://wiki.qemu.org/Documentation/Networking#Network_Backends)
 
 ## Appendix MacOS networking Cheat Sheet
 
 - remove a network bridge interface: `sudo ifconfig <bridge01> destroy`
 - create a tun interface: `brew install tuntap && sudo ifconfig tun0 create`
 - check route to host: `traceroute 10.0.5.3`
-- add a route to one (first) host via (second) gateway: `sudo route add 10.0.5.3 10.0.5.1` 
+- add a route to one (first) host via (second) gateway: `sudo route add 10.0.5.3 10.0.5.1`
+- qemu supported models: `qemu-system-x86_64 -nic model=help`
