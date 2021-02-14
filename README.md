@@ -139,6 +139,7 @@ Let's go to the cloud
 - [macos/tuntaposx/faq](http://tuntaposx.sourceforge.net/faq.xhtml)
 - [macos/qemu-bridging](https://www.dzombak.com/files/qemu-bridging-mavericks.pdf)
 - [qemu/networking](https://wiki.qemu.org/Documentation/Networking#Network_Backends)
+- [qemu/macos-specifics](https://www.emaculation.com/doku.php/ppc-osx-on-qemu-for-osx)
 
 ## Appendix MacOS networking Cheat Sheet
 

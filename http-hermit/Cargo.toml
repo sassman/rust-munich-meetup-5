@@ -1,5 +1,5 @@
 [package]
-name = "echo-hermit"
+name = "http-hermit"
 version = "0.1.0"
 authors = ["Sven Assmann <sven.assmann.it@gmail.com>"]
 edition = "2018"
@@ -11,7 +11,7 @@ tiny_http = { path = "../tiny-http" }
 ascii = "1.0.0"
 
 [target.'cfg(target_os = "hermit")'.dependencies]
-hermit-sys = { version = "0.1.*", features = ["smoltcp", "dhcpv4"] }
+hermit-sys = { version = "0.1", features = ["smoltcp", "dhcpv4"] }
 
 [profile.release]
 opt-level = 3
