@@ -10,3 +10,9 @@
 [submodule "tiny-http"]
 	path = tiny-http
 	url = git@github.com:hermitcore/tiny-http.git
+[submodule "libhermit-rs"]
+	path = libhermit-rs
+	url = git@github.com:hermitcore/libhermit-rs.git
+[submodule "hermit-template-rs"]
+	path = hermit-template-rs
+	url = git@github.com:sassman/hermit-template-rs.git

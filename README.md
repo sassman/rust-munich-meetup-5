@@ -1,6 +1,8 @@
-# Rust KX - II
+# Rust Munich Meetup - #5 Remote
 
 This session is all about [Unikernels][1] and [rusty-hermit][2].
+
+Find the [slides online](https://docs.google.com/presentation/d/1Vscnq9QMO6hcSb0hxHcXLR-Zdb0OZNpZzbI9lEVycg8/edit?usp=sharing)
 
 ## Intro
 
@@ -35,14 +37,23 @@ sudo apt-get install qemu-system-x86 nasm
 brew install qemu nasm
 ```
 
-### 1. Rust nightly
+### 1. Rust nightly (handled by rust-toolchain file)
+
+> Note: this is not needed, because rust checks the file `rust-toolchain` and make sure everything runs as defined in that file.
+
+for completeness that is essentially whats happening:
 ```sh
 rustup default nightly
-cargo install cargo-download
 rustup component add rust-src llvm-tools-preview
 ```
 
-### 2. Build the loader
+### 1.2 Other crates
+
+```sh
+cargo install cargo-download
+```
+
+### 2. Build the loader (for qemu)
 ```sh
 cd rusty-loader
 release=1 make
