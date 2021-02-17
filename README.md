@@ -136,8 +136,10 @@ hello hermit
 hello hermit
 ```
 
-## Bonus Track AWS
-Let's go to the cloud
+## Bonus Track: RustyHermit on K8S 
+
+We won't cover that today, but there is a nice [wiki page about how](https://github.com/hermitcore/rusty-hermit/wiki/RustyHermit-on-K8S) 
+one can run RustyHermit on [KubeVirt](https://kubevirt.io).
 
 [1]: http://unikernel.org/
 [2]: https://rust-osdev.com/showcase/rusty-hermit/
